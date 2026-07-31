@@ -62,6 +62,25 @@ Notes:
 - If your app file is named something else (for example `main.py`), replace `app` and `module` accordingly: `uvicorn main:app`.
 - The `--reload` flag is intended for development only.
 
+## Accessing the app
+
+Once the server is running (default above uses port `8000`), open the following URLs in your browser or call them with `curl`:
+
+- **Root:** http://localhost:8000/ — basic root endpoint (returns `{"status": "ok"}` for the minimal app)
+- **OpenAPI docs (Swagger UI):** http://localhost:8000/docs — interactive API docs
+- **ReDoc docs:** http://localhost:8000/redoc — alternative API docs UI
+- **Health check:** http://localhost:8000/healthz — simple readiness/liveness check
+
+Example `curl` commands:
+
+```powershell
+curl http://localhost:8000/
+curl http://localhost:8000/healthz
+```
+
+If you started the server with `--host 0.0.0.0` and want to access it from another machine on the same network, replace `localhost` with the host machine's IP address (for example `http://192.168.1.100:8000`). Ensure any firewall allows incoming connections on that port.
+
+
 ## Running tests
 
 Run the test suite with `pytest`:
