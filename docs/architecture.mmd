@@ -1,0 +1,18 @@
+flowchart LR
+  A[Browser/CLI] --> B[Uvicorn]
+  C[Mobile] --> B
+  B --> D[FastAPI]
+  D --> E[Retriever]
+  D --> F[Embedding Service]
+  D --> G[LLM / OpenAI]
+  D --> H[Static Files]
+  D --> I[Redis Cache]
+  E --> J[Vector DB]
+  E --> K[Document Store]
+  F --> L[Embedding Model]
+  G --> M[Response]
+  subgraph BackgroundWorkers
+    N[Indexing / Ingestion]
+  end
+  N --- J
+  N --- K
